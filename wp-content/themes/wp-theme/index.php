@@ -1,12 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WP theme</title>
-</head>
-<body>
-    <h3>Hello, World</h3>
+<?php get_header(); // подключаем header.php ?>   
+
+	<div class="middle">
+	<?php
+		// циклы вывода записей
+		// если записи найдены
+		if ( have_posts() ){
+			while ( have_posts() ){
+				the_post();
+
+				echo '<h4><a href="'. get_permalink() .'">'. get_the_title() .'</a></h4>';
+
+				echo get_the_excerpt();
+			}
+		}
+		// елси записей не найдено
+		else{
+			echo ' <p>Записей нет...</p>';
+		}
+		?>
+	</div>
+
+    <?php get_footer(); // подключаем footer.php ?>    
+
+	<?php wp_footer(); ?>
 </body>
+
 </html>
